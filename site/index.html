@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Henry Sells — Public Info</title>
+    <!-- Icons -->
+    <link rel="icon" href="../assets/img/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/img/apple-touch-icon.png"
+    />
+
+    <style>
+      /* -------------------------------------------
+       ROOT THEME COLORS (from user-provided theme)
+       These variables keep everything consistent
+    ------------------------------------------- */
+      :root {
+        --font-main: "Montserrat", sans-serif;
+        --body-bg-clr: #e8f5e9;
+        --text-clr: #0a2612;
+        --acent-gold: #00c853;
+        --acent-gold2: #1de980;
+        --bg-clr: #d7f0db;
+        --bg: #c2e8c7;
+        --card: #dff5e3aa;
+        --glass: rgba(0, 80, 40, 0.06);
+        --muted: #5d7f66;
+
+        --accent-1: #4caf50;
+        --accent-2: #81c784;
+        --accent-text: #0b2f18;
+
+        --green-1: #00c853;
+        --green-2: #1de980;
+        --green-strong: #009e46;
+
+        --card-bg: rgba(223, 245, 227, 0.92);
+        --card-hover: rgba(200, 235, 210, 1);
+
+        --text: var(--text-clr);
+        --text-muted: var(--muted);
+
+        --radius: 16px;
+
+        --shadow-green-1: rgba(0, 180, 80, 0.25);
+        --shadow-green-2: rgba(0, 200, 83, 0.18);
+        --shadow-green-strong: rgba(0, 150, 60, 0.28);
+      }
+
+      /* -------------------------------------------
+       GLOBAL PAGE STYLING
+    ------------------------------------------- */
+      body {
+        font-family: var(--font-main);
+        background: var(--body-bg-clr);
+        color: var(--text);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.6;
+        -webkit-tap-highlight-color: transparent; /* Removes mobile blue tap highlight */
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        padding: 0;
+        font-weight: 700;
+      }
+
+      /* Subtle container styling */
+      .container {
+        width: 95%;
+        max-width: 900px;
+        margin-top: 40px;
+        background: var(--card-bg);
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: 0 6px 20px var(--shadow-green-1);
+        backdrop-filter: blur(6px);
+      }
+
+      /* -------------------------------------------
+       DAY COUNTER SECTION
+    ------------------------------------------- */
+      #dayCounter {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--green-strong);
+        margin-bottom: 15px;
+      }
+
+      /* -------------------------------------------
+       LIMITATION SECTION STYLING
+    ------------------------------------------- */
+      .section-title {
+        font-size: 1.3rem;
+        margin-top: 25px;
+        color: var(--green-1);
+      }
+
+      .limitation-box {
+        background: var(--glass);
+        padding: 20px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        margin-top: 10px;
+      }
+
+      /* -------------------------------------------
+       REVIEW CARD (edited & simplified)
+    ------------------------------------------- */
+      .review-card {
+        margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 12px var(--shadow-green-2);
+      }
+
+      .review-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--green-strong);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .review-subtext {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 140px;
+        border-radius: var(--radius);
+        padding: 15px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: var(--card-bg);
+        resize: vertical;
+        font-family: var(--font-main);
+        outline: none;
+      }
+
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6px;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      .submit-btn {
+        background: var(--green-1);
+        color: white;
+        padding: 12px 20px;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 10px;
+        box-shadow: 0 4px 12px var(--shadow-green-strong);
+        transition: 0.2s;
+      }
+
+      .submit-btn:hover {
+        background: var(--green-strong);
+        transform: translateY(-2px);
+      }
+
+      /* -------------------------------------------
+       RESPONSIVE
+    ------------------------------------------- */
+      @media (max-width: 600px) {
+        .container {
+          padding: 18px;
+        }
+        #dayCounter {
+          font-size: 1.2rem;
+        }
+        .review-card {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Day Counter Display -->
+      <div id="dayCounter">Day 45, Henry Sells Development</div>
+
+      <!-- Limitations Section -->
+      <h2 class="section-title">Development Notes & Limitations</h2>
+      <div class="limitation-box">
+        <p>
+          While building <strong>Henry Sells</strong> as a solo developer, I had
+          to rethink how trust is built on e‑commerce platforms. Established
+          marketplaces like Amazon rely on verified accounts, carts, and
+          automated checkout. In contrast, my stack (HTML, CSS, JavaScript,
+          Firebase, GitHub, Vercel) meant I had to implement a lightweight
+          alternative.
+        </p>
+
+        <p>
+          I used a direct‑to‑chat approach—redirecting buyers to business
+          WhatsApp or Telegram with their selected products. This keeps things
+          personal, transparent, and simple.
+        </p>
+
+        <p>
+          However, I discovered a major limitation: platforms like
+          <strong>wa.me</strong> and Telegram links do not send messages
+          instantly. Instead, they place the product details in a text box,
+          requiring the user to press "Send" manually. This gives room for
+          altering prices or messages, which reduces professionalism.
+        </p>
+
+        <p>
+          I'm exploring ways to send fixed, uneditable product summaries (images
+          + prices) without changing my existing stack.
+        </p>
+
+        <p>
+          If you have ideas or experience with this problem, please share them
+          below — it really helps.
+        </p>
+
+        <p>
+          GitHub (developer):
+          <a href="https://github.com/1501henify" target="_blank">1501henify</a>
+        </p>
+      </div>
+
+      <!-- Review Card (Text-only) -->
+      <div class="review-card">
+        <div>
+          <div class="review-title">
+            <i class="fa-solid fa-star"></i>
+            Share a Review
+          </div>
+          <div class="review-subtext">
+            Your suggestions, ideas, and feedback help improve Henry Sells.
+            Leave a short or long review — everything is read.
+          </div>
+        </div>
+
+        <textarea
+          id="review-text"
+          placeholder="Share your thoughts, ideas, or improvements you'd like to see…"
+          maxlength="1200"
+        ></textarea>
+
+        <div class="meta-row">
+          <div>Public</div>
+          <div id="charHint">1200 max</div>
+        </div>
+
+        <button class="submit-btn" type="button">Submit review</button>
+      </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+
+    <script>
+      /* ----------------------------------------------------
+       DAY COUNTER (Beginner-friendly explanation)
+       - Starts at Day 45
+       - Increases every 24 hours using localStorage
+       - This ensures the counter keeps going even if
+         the page is closed for days.
+    ---------------------------------------------------- */
+      const dayDisplay = document.getElementById("dayCounter");
+
+      let startDay = 45;
+
+      const lastSaved = localStorage.getItem("henry_day_timestamp");
+      const savedDay = localStorage.getItem("henry_day_value");
+
+      // If stored values exist, calculate difference
+      if (lastSaved && savedDay) {
+        const now = Date.now();
+        const elapsed = now - Number(lastSaved);
+
+        // How many whole days passed
+        const daysPassed = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+
+        startDay = Number(savedDay) + daysPassed;
+      }
+
+      // Save updated values
+      localStorage.setItem("henry_day_timestamp", Date.now());
+      localStorage.setItem("henry_day_value", startDay);
+
+      dayDisplay.textContent = `Day ${startDay}, Henry Sells Development`;
+    </script>
+    <script type="module" src="../assets/js/review.js"></script>
+  </body>
+</html>

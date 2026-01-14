@@ -1,0 +1,477 @@
+/* ---------------------------------------------------
+   ROOT VARIABLES
+--------------------------------------------------- */
+:root {
+  --font-main: "Montserrat", sans-serif;
+  --bg-main: #e9f7ef;
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --glass-border: rgba(0, 80, 40, 0.08);
+  --accent: #00c853;
+  --muted: #5d7f66;
+  --radius: 12px;
+  --shadow: 0 8px 24px rgba(2, 33, 12, 0.05);
+
+  /* From second block */
+  --white: #ffffff;
+  --primary: #00c853;
+  --border-light: rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.06);
+
+  --danger: #d32f2f;
+  --dark: #072912;
+}
+
+/* ---------------------------------------------------
+   RESET
+--------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg-main), #f7fff8);
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+/* ---------------------------------------------------
+   MAIN CONTAINER
+--------------------------------------------------- */
+.orders-container {
+  max-width: 1200px;
+  margin: 18px auto;
+  padding: 18px;
+}
+
+/* ---------------------------------------------------
+   ADMIN HEADER
+--------------------------------------------------- */
+.admin-header {
+  padding: 8px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-header h1 {
+  font-size: 1.4rem;
+  color: var(--dark);
+}
+.admin-header .subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* header nav */
+.header-nav .nav-link {
+  margin-right: 12px;
+  text-decoration: none;
+  color: var(--muted);
+}
+.logout-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------
+   SEARCH BAR
+--------------------------------------------------- */
+.search-section {
+  margin: 8px 0 18px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  flex: 1;
+  background: transparent;
+  color: #0b2f18;
+}
+
+.search-box input::placeholder {
+  color: #98a99a;
+}
+
+.search-icon {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.clear-search {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.clear-search:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* ---------------------------------------------------
+   GRID LAYOUT
+--------------------------------------------------- */
+.orders-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding-bottom: 50px;
+}
+
+/* ---------------------------------------------------
+   ORDER CARD
+--------------------------------------------------- */
+.order-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+  position: relative;
+  transition: all 0.35s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(2, 33, 12, 0.07);
+}
+
+/* ---------------------------------------------------
+   NEW ORDER HIGHLIGHT ANIMATION
+--------------------------------------------------- */
+.order-card.highlight-new {
+  animation: highlightFlash 1s ease-out 1;
+  box-shadow: 0 0 20px rgba(0, 200, 0, 0.5);
+  border-color: #28c428;
+}
+
+@keyframes highlightFlash {
+  0% {
+    background: #eaffea;
+  }
+  100% {
+    background: var(--card-bg);
+  }
+}
+
+/* ---------------------------------------------------
+   ORDER HEADER
+--------------------------------------------------- */
+.order-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.order-id {
+  font-weight: 700;
+  color: #08381a;
+  font-size: 0.98rem;
+}
+
+.order-date {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 3px;
+}
+
+.order-ref {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------
+   ORDER BODY
+--------------------------------------------------- */
+.order-body {
+  margin-top: 6px;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  padding: 12px 0;
+}
+
+.product-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0, 80, 40, 0.04);
+  align-items: center;
+}
+
+.product-row:last-child {
+  border-bottom: none;
+}
+
+.product-name {
+  font-weight: 600;
+  color: #072912;
+}
+
+.price-tag {
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+}
+.price-tag .currency {
+  font-size: 0.85rem;
+  opacity: 0.95;
+}
+.price-tag .amount {
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------
+   FOOTER
+--------------------------------------------------- */
+.order-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.order-total {
+  font-weight: 800;
+  color: #08381a;
+  font-size: 1.2rem;
+}
+
+/* ---------------------------------------------------
+   ACTION BUTTONS
+--------------------------------------------------- */
+.order-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.pdf-btn,
+.delete-btn,
+.seen-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.25s;
+}
+
+.pdf-btn {
+  background: var(--danger);
+}
+.pdf-btn:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: #444;
+}
+.delete-btn:hover {
+  background: #000;
+}
+
+.seen-btn {
+  background: var(--primary);
+}
+.seen-btn:hover {
+  filter: brightness(0.92);
+}
+
+/* ---------------------------------------------------
+   STATES
+--------------------------------------------------- */
+.loading-text,
+.no-orders {
+  padding: 26px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------
+   MODAL (CONFIRM DELETE)
+--------------------------------------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(5, 10, 8, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  z-index: 1200;
+}
+
+.modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-panel {
+  width: 92%;
+  max-width: 520px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.99),
+    rgba(250, 255, 250, 0.98)
+  );
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 18px 48px rgba(2, 33, 12, 0.18);
+  border: 1px solid rgba(2, 33, 12, 0.06);
+  transform: translateY(-8px);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.modal-header h2 {
+  font-size: 1.05rem;
+  color: var(--dark);
+}
+.modal-close {
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.modal-body {
+  padding: 8px 0 12px;
+  color: #0b2f18;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+}
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* ---------------------------------------------------
+   PDF LOADER
+--------------------------------------------------- */
+.pdf-loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.24);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  z-index: 1300;
+}
+.pdf-loader.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.pdf-loader-panel {
+  background: #fff;
+  padding: 18px 22px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 12px 40px rgba(2, 33, 12, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 4px solid rgba(0, 0, 0, 0.08);
+  border-top-color: var(--primary);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.pdf-msg {
+  color: var(--dark);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------
+   RESPONSIVENESS
+--------------------------------------------------- */
+@media (max-width: 900px) {
+  .orders-container {
+    padding: 14px;
+  }
+  .order-card {
+    padding: 12px;
+  }
+  .search-box {
+    padding: 9px;
+  }
+}
+
+@media (max-width: 600px) {
+  .orders-container {
+    padding: 12px;
+    margin: 10px;
+  }
+  .orders-grid {
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .product-row {
+    padding: 8px 0;
+    font-size: 0.95rem;
+  }
+  .order-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .search-box {
+    gap: 10px;
+  }
+}
