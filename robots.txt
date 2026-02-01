@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block sensitive admin pages from appearing in Google search
+Disallow: /admin/
+Disallow: /admin/html/
+Disallow: /admin/css/
+
+# Sitemap location
+Sitemap: https://henrysells.vercel.app/sitemap.xml

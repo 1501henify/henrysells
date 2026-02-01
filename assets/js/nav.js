@@ -18,7 +18,7 @@ const allLinks = Array.from(links.querySelectorAll("a")).map((a) => {
    CURRENT PAGE
 ========================= */
 function getCurrentFile() {
-  let file = window.location.pathname.split("/").pop();
+  const file = window.location.pathname.split("/").pop();
   return file === "" ? "index.html" : file;
 }
 
@@ -81,12 +81,15 @@ function closeNav() {
   toggle.classList.remove("open");
 }
 
-/* =========================
-   TOGGLE
-========================= */
-toggle.addEventListener("click", () => {
+function toggleNav() {
   links.classList.contains("show") ? closeNav() : openNav();
-});
+}
+
+/* =========================
+   TOGGLE TRIGGERS
+========================= */
+toggle.addEventListener("click", toggleNav);
+current.addEventListener("click", toggleNav);
 
 /* =========================
    SAFETY

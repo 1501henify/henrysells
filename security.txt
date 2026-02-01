@@ -1,0 +1,4 @@
+Contact: mailto:henrysells17@gmail.com
+Preferred-Languages: en
+Canonical: https://henrysells.vercel.app/security.txt
+Policy: https://henrysells.vercel.app

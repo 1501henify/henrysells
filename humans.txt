@@ -1,0 +1,14 @@
+/* TEAM */
+Developer: Henry Sells
+Website: https://henrysells.vercel.app
+Email: henrysells17@gmail.com
+Phone: +2348160813334
+
+/* SITE */
+Last Updated: 2025
+Standards: HTML5, CSS3, JavaScript, GitHub, FireBase
+Hosting: Vercel
+Location: Nigeria
+
+/* THANKS */
+Thanks for visiting HenrySells — your trusted source for genuine gadgets.
