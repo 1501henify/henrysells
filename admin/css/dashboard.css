@@ -1,28 +1,27 @@
-/* Updated Green-Themed CSS with Improved Variable Utilization */
 :root {
   /* Fonts */
   --font-main: "Montserrat", sans-serif;
 
-  /* Core Greens */
-  --green-dark: #0a2612;
-  --green-mid: #4caf50;
-  --green-light: #81c784;
-  --green-bright: #00c853;
-  --green-bright2: #1de980;
+  /* Core Greens (dark variants) */
+  --green-dark: #07210c;
+  --green-mid: #2e7d32;
+  --green-light: #4caf50;
+  --green-bright: #00e676;
+  --green-bright2: #1de9b6;
 
   /* Background Layers */
-  --bg-soft: #e8f5e9;
-  --bg-main: #c2e8c7;
-  --bg-secondary: #d7f0db;
+  --bg-soft: #0b1b10;
+  --bg-main: #0d2a18;
+  --bg-secondary: #123422;
 
   /* Card + Glass */
-  --card-bg: rgba(223, 245, 227, 0.67);
-  --glass-bg: rgba(0, 80, 40, 0.06);
-  --glass-border: rgba(0, 80, 40, 0.1);
+  --card-bg: rgba(18, 40, 28, 0.8);
+  --glass-bg: rgba(0, 80, 40, 0.15);
+  --glass-border: rgba(0, 150, 70, 0.25);
 
   /* Text Colors */
-  --text-primary: #0b2f18;
-  --text-muted: #5d7f66;
+  --text-primary: #e2f7eb;
+  --text-muted: #8ab39c;
 
   /* Layout + Shape */
   --radius: 16px;
@@ -33,7 +32,7 @@
     rgba(255, 255, 255, 0.02),
     rgba(255, 255, 255, 0.01)
   );
-  --nav-link-color: #0b2f18;
+  --nav-link-color: #e2f7eb;
 }
 
 /* Global Resets */

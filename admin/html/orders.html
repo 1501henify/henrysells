@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Orders — Henry Sells</title>
+    <title>Admin Orders</title>
 
     <link rel="stylesheet" href="../css/orders.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
@@ -98,14 +98,12 @@
       </div>
     </div>
 
-    <!-- MAIN SCRIPT -->
     <script type="module">
-      import { auth, db } from "../../firebase/firebaseConfig.js";
+      import { auth, db } from "../firebase/firebaseConfig.js";
       import {
         onAuthStateChanged,
         signOut,
       } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-
       import {
         collection,
         onSnapshot,
@@ -126,41 +124,51 @@
       const modalDelete = document.getElementById("modalDelete");
 
       const pdfLoader = document.getElementById("pdfLoader");
-
       const newOrderSound = new Audio(
         "../../assets/sound/Slack - Knock brush.mp3"
       );
 
       let seenGroups = JSON.parse(localStorage.getItem("seenGroups") || "[]");
+      let pendingDeleteCustomer = null;
+      let customerGroups = [];
 
+      // Helper
       function formatNaira(n) {
         return "₦" + Number(n || 0).toLocaleString("en-NG");
       }
+      function escapeHtml(s) {
+        return String(s || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
 
-      /* AUTH */
+      // ------------------------
+      // AUTH
+      // ------------------------
       onAuthStateChanged(auth, (user) => {
         if (!user) return (window.location.href = "../index.html");
         listenForOrders();
       });
 
-      document.getElementById("logoutBtn").onclick = () => {
+      document.getElementById("logoutBtn").onclick = () =>
         signOut(auth).then(() => (window.location.href = "../index.html"));
-      };
 
-      /* SNAPSHOT LISTENER */
+      // ------------------------
+      // LISTENER
+      // ------------------------
       function listenForOrders() {
         const qOrders = query(
           collection(db, "orders"),
           orderBy("createdAt", "desc")
         );
-        onSnapshot(qOrders, (snap) => {
-          processOrdersSnapshot(snap);
-        });
+        onSnapshot(qOrders, (snap) => processOrdersSnapshot(snap));
       }
 
-      let customerGroups = [];
-      let pendingDeleteCustomer = null; // for modal
-
+      // ------------------------
+      // PROCESS SNAPSHOT
+      // ------------------------
       function processOrdersSnapshot(qsnap) {
         if (!qsnap || qsnap.empty) {
           ordersGrid.innerHTML = `<p class="no-orders">No orders yet.</p>`;
@@ -169,25 +177,20 @@
         }
 
         const grouped = {};
-
         qsnap.forEach((ds) => {
           const d = ds.data();
           d.id = ds.id;
-
           const key = d.referenceName || "Unknown Customer";
 
-          if (!grouped[key]) {
+          if (!grouped[key])
             grouped[key] = {
               name: key,
               orders: [],
               products: [],
               latestDate: d.createdAt?.toDate() || new Date(0),
             };
-          }
-
           grouped[key].orders.push(d);
           grouped[key].products.push(...(d.products || []));
-
           const dt = d.createdAt?.toDate();
           if (dt > grouped[key].latestDate) grouped[key].latestDate = dt;
         });
@@ -195,14 +198,14 @@
         customerGroups = Object.values(grouped).sort(
           (a, b) => b.latestDate - a.latestDate
         );
-
         renderOrders(customerGroups);
       }
 
-      /* RENDER */
+      // ------------------------
+      // RENDER
+      // ------------------------
       function renderOrders(groups) {
         ordersGrid.innerHTML = "";
-
         if (!groups.length) {
           ordersGrid.innerHTML = `<p class="no-orders">No matching orders.</p>`;
           return;
@@ -221,7 +224,6 @@
           if (isNew) card.classList.add("highlight-new");
 
           const dateStr = customer.latestDate?.toLocaleString() || "Unknown";
-
           const totalNumeric = customer.products.reduce(
             (s, p) => s + (p.priceNumeric || 0),
             0
@@ -230,15 +232,16 @@
           const rows = customer.products
             .map(
               (p) => `
-        <div class="product-row">
-          <span class="product-name">${escapeHtml(p.name)}</span>
-          <span class="price-tag">
-            <span class="currency">₦</span>
-            <span class="amount">${Number(p.priceNumeric || 0).toLocaleString(
-              "en-NG"
-            )}</span>
-          </span>
-        </div>`
+      <div class="product-row">
+        <span class="product-name">${escapeHtml(p.name)}</span>
+        <span class="price-tag">
+          <span class="currency">₦</span>
+          <span class="amount">${Number(p.priceNumeric || 0).toLocaleString(
+            "en-NG"
+          )}</span>
+        </span>
+      </div>
+    `
             )
             .join("");
 
@@ -255,9 +258,7 @@
 
       <footer class="order-footer">
         <strong class="order-total">Total: ${formatNaira(totalNumeric)}</strong>
-
         <button class="seen-btn">Mark as seen</button>
-
         <div class="order-actions">
           <button class="pdf-btn" title="Export as Invoice PDF"><i class="fa-solid fa-file-invoice"></i></button>
           <button class="delete-btn" title="Delete Customer Order"><i class="fa-solid fa-trash"></i></button>
@@ -265,6 +266,7 @@
       </footer>
     `;
 
+          // Event: mark as seen
           card.querySelector(".seen-btn").onclick = () => {
             if (!seenGroups.includes(customer.name)) {
               seenGroups.push(customer.name);
@@ -273,10 +275,11 @@
             card.classList.remove("highlight-new");
           };
 
-          card.querySelector(".delete-btn").onclick = () => {
+          // Event: delete
+          card.querySelector(".delete-btn").onclick = () =>
             openDeleteModal(customer);
-          };
 
+          // Event: PDF export
           card.querySelector(".pdf-btn").onclick = () =>
             exportCustomerInvoicePDF(customer);
 
@@ -284,13 +287,13 @@
         });
       }
 
-      /* SEARCH */
+      // ------------------------
+      // SEARCH
+      // ------------------------
       clearSearchBtn.onclick = () => {
         searchInput.value = "";
-        searchInput.focus();
         renderOrders(customerGroups);
       };
-
       searchInput.oninput = () => {
         const q = searchInput.value.trim().toLowerCase();
         if (!q) return renderOrders(customerGroups);
@@ -308,23 +311,14 @@
         renderOrders(filtered);
       };
 
-      function escapeHtml(s) {
-        return String(s || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;");
-      }
-
-      /* ---------------------------
-         DELETE MODAL
-         --------------------------- */
+      // ------------------------
+      // DELETE MODAL
+      // ------------------------
       function openDeleteModal(customer) {
         pendingDeleteCustomer = customer;
         modalMsg.textContent = `Delete ALL orders for "${customer.name}"? This action cannot be undone.`;
         modal.setAttribute("aria-hidden", "false");
         modal.classList.add("open");
-        // focus the cancel button
         modalCancel.focus();
       }
 
@@ -342,11 +336,9 @@
         const customer = pendingDeleteCustomer;
         closeModal();
         try {
-          // delete each order document for that customer
           for (const order of customer.orders) {
             await deleteDoc(doc(db, "orders", order.id));
           }
-          // remove seen flag for that customer
           seenGroups = seenGroups.filter((n) => n !== customer.name);
           localStorage.setItem("seenGroups", JSON.stringify(seenGroups));
           alert("Customer orders deleted successfully.");
@@ -356,22 +348,19 @@
         }
       };
 
-      /* ---------------------------
-         PDF EXPORT (Invoice style using jsPDF)
-         --------------------------- */
+      // ------------------------
+      // PDF EXPORT
+      // ------------------------
       async function exportCustomerInvoicePDF(customer) {
         try {
-          // show loader
           showPdfLoader(true);
-
           const { jsPDF } = window.jspdf;
-
           const pdf = new jsPDF({ unit: "pt", format: "a4" });
           const pageWidth = pdf.internal.pageSize.getWidth();
           const margin = 40;
           let cursorY = 60;
 
-          // Business info (top-left) and Invoice label (top-right)
+          // HEADER
           pdf.setFontSize(12);
           pdf.setFont("helvetica", "bold");
           pdf.text("HENRY SELLS", margin, cursorY);
@@ -380,10 +369,9 @@
           pdf.text("Email: henrysells17@gmail.com", margin, cursorY + 18);
           pdf.text("Phone: +234 (0) 8160813334", margin, cursorY + 34);
 
-          // Invoice header on right
+          const headerLabel = "INVOICE";
           pdf.setFontSize(18);
           pdf.setFont("helvetica", "bold");
-          const headerLabel = "INVOICE";
           pdf.text(
             headerLabel,
             pageWidth - margin - pdf.getTextWidth(headerLabel),
@@ -392,7 +380,7 @@
 
           cursorY += 56;
 
-          // customer + meta
+          // BILL TO
           pdf.setDrawColor(200);
           pdf.setLineWidth(0.6);
           pdf.line(margin, cursorY, pageWidth - margin, cursorY);
@@ -411,10 +399,9 @@
             : "Unknown";
           pdf.text(lastOrderLabel, margin, cursorY);
           pdf.text(lastOrderStr, margin + 72, cursorY);
-
           cursorY += 24;
 
-          // Table header
+          // TABLE HEADER
           pdf.setFont("helvetica", "bold");
           pdf.setFontSize(11);
           const colNameX = margin;
@@ -426,60 +413,44 @@
           pdf.text("Qty", colQtyX, cursorY);
           pdf.text("Unit", colUnitX, cursorY);
           pdf.text("Amount", colAmountX, cursorY, { align: "right" });
-
           cursorY += 8;
+
           pdf.setDrawColor(220);
           pdf.setLineWidth(0.5);
           pdf.line(margin, cursorY, pageWidth - margin, cursorY);
           cursorY += 14;
 
-          // Products rows
+          // PRODUCTS
           pdf.setFont("helvetica", "normal");
           pdf.setFontSize(10);
-
           const rowHeight = 16;
           let subtotal = 0;
-          const products = customer.products || [];
-
-          for (let i = 0; i < products.length; i++) {
-            const p = products[i];
+          for (let i = 0; i < customer.products.length; i++) {
+            const p = customer.products[i];
             const name = p.name || "Item";
             const qty = p.qty || 1;
             const unit = p.unit || "";
             const amount = Number(p.priceNumeric || 0);
-            const amountStr = formatNaira(amount);
-
-            // page break check
-            if (cursorY + rowHeight > pdf.internal.pageSize.getHeight() - 120) {
-              pdf.addPage();
-              cursorY = 60;
-            }
-
-            // description: wrap if long
             const splitName = pdf.splitTextToSize(name, colQtyX - colNameX - 8);
             pdf.text(splitName, colNameX, cursorY);
-
-            // qty / unit / amount (aligned)
             pdf.text(String(qty), colQtyX, cursorY);
             pdf.text(String(unit), colUnitX, cursorY);
-            pdf.text(amountStr, colAmountX, cursorY, { align: "right" });
-
-            // if splitName had multiple lines, move cursor accordingly
+            pdf.text(formatNaira(amount), colAmountX, cursorY, {
+              align: "right",
+            });
             cursorY += rowHeight * Math.max(1, splitName.length);
-
             subtotal += amount * qty;
           }
 
-          // totals block
+          // TOTALS
           cursorY += 12;
           pdf.setLineWidth(0.5);
           pdf.setDrawColor(220);
           pdf.line(colUnitX - 20, cursorY, pageWidth - margin, cursorY);
           cursorY += 10;
 
-          const tax = 0; // set if needed
+          const tax = 0;
           const total = subtotal + tax;
-
           pdf.setFont("helvetica", "bold");
           pdf.text("Subtotal:", colUnitX - 20, cursorY);
           pdf.text(formatNaira(subtotal), colAmountX, cursorY, {
@@ -497,14 +468,12 @@
           pdf.text(formatNaira(total), colAmountX, cursorY, { align: "right" });
           cursorY += 28;
 
-          // Footer notes
           pdf.setFontSize(9);
           pdf.setFont("helvetica", "normal");
           pdf.text("Thank you for your order.", margin, cursorY);
           cursorY += 14;
           pdf.text("This is a computer-generated invoice.", margin, cursorY);
 
-          // Save PDF
           const filename = `Invoice_${customer.name.replace(
             /\s+/g,
             "_"
@@ -522,27 +491,8 @@
       }
 
       function showPdfLoader(show) {
-        if (show) {
-          pdfLoader.setAttribute("aria-hidden", "false");
-          pdfLoader.classList.add("visible");
-        } else {
-          pdfLoader.setAttribute("aria-hidden", "true");
-          pdfLoader.classList.remove("visible");
-        }
-      }
-
-      // Ask for notifications ONCE
-      if ("Notification" in window && Notification.permission === "default") {
-        Notification.requestPermission().then((result) => {
-          console.log("Notification permission:", result);
-        });
-      }
-
-      // Register service worker (must not be imported as module)
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("../orders-sw.js").then(() => {
-          console.log("Service worker registered");
-        });
+        if (!pdfLoader) return;
+        pdfLoader.style.display = show ? "block" : "none";
       }
     </script>
   </body>

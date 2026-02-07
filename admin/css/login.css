@@ -2,33 +2,33 @@
   /* FONT */
   --font-main: "Montserrat", sans-serif;
 
-  /* CORE GREEN PALETTE */
-  --green-dark: #0a2612;
-  --green-muted: #5d7f66;
+  /* CORE GREEN PALETTE (dark variants) */
+  --green-dark: #071c0c;
+  --green-muted: #3a5a45;
 
-  --green-accent1: #4caf50;
-  --green-accent2: #81c784;
+  --green-accent1: #2e7d32;
+  --green-accent2: #4caf50;
 
-  --green-bright1: #00c853; /* acent-gold */
-  --green-bright2: #1de980; /* acent-gold2 */
+  --green-bright1: #00e676; /* acent-gold */
+  --green-bright2: #1de9b6; /* acent-gold2 */
 
   /* BACKGROUND LAYERS */
-  --bg-main: #c2e8c7; /* body background */
-  --bg-alt: #d7f0db;
-  --bg-soft: #e8f5e9;
+  --bg-main: #0b1b10; /* body background */
+  --bg-alt: #0d2a18;
+  --bg-soft: #123422;
 
   /* GLASS */
-  --glass-bg: rgba(0, 80, 40, 0.06);
-  --glass-border: rgba(0, 80, 40, 0.1);
+  --glass-bg: rgba(0, 100, 50, 0.15);
+  --glass-border: rgba(0, 150, 70, 0.25);
 
   /* CARD & COMPONENT COLORS */
-  --card-bg: #dff5e3aa;
-  --input-bg: rgba(255, 255, 255, 0.06);
-  --input-focus-bg: rgba(255, 255, 255, 0.12);
+  --card-bg: rgba(18, 40, 28, 0.8);
+  --input-bg: rgba(0, 0, 0, 0.15);
+  --input-focus-bg: rgba(0, 0, 0, 0.25);
 
   /* TEXT */
-  --text-primary: #0b2f18;
-  --text-muted: #5d7f66;
+  --text-primary: #e2f7eb;
+  --text-muted: #8ab39c;
 
   /* SHADOWS & SHAPES */
   --radius: 16px;

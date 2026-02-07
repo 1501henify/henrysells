@@ -1,0 +1,10 @@
+import "./loader.js";
+import "./script.js";
+import "./random.js";
+import "./backToTop.js";
+import "./nav.js";
+import "./specs.js";
+import "./info.js";
+import "./showcase.js";
+import "./filter_two.js";
+import "./observer.js";

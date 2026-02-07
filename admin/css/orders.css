@@ -1,24 +1,21 @@
-/* ---------------------------------------------------
-   ROOT VARIABLES
---------------------------------------------------- */
 :root {
   --font-main: "Montserrat", sans-serif;
-  --bg-main: #e9f7ef;
-  --card-bg: rgba(255, 255, 255, 0.96);
-  --glass-border: rgba(0, 80, 40, 0.08);
-  --accent: #00c853;
-  --muted: #5d7f66;
+
+  --bg-main: #0b1b10;
+  --card-bg: rgba(18, 40, 28, 0.85);
+  --glass-border: rgba(0, 120, 60, 0.25);
+  --accent: #00e676;
+  --muted: #8ab39c;
   --radius: 12px;
-  --shadow: 0 8px 24px rgba(2, 33, 12, 0.05);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 
-  /* From second block */
-  --white: #ffffff;
-  --primary: #00c853;
-  --border-light: rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.06);
+  --white: #e2f7eb;
+  --primary: #00e676;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
 
-  --danger: #d32f2f;
-  --dark: #072912;
+  --danger: #ef5350;
+  --dark: #01150a;
 }
 
 /* ---------------------------------------------------

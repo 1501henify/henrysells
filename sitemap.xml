@@ -7,19 +7,19 @@
   </url>
 
   <url>
-    <loc>https://henrysells.vercel.app/assets/pages/accessories.html</loc>
+    <loc>https://henrysells.vercel.app/pages/accessories.html</loc>
     <priority>0.80</priority>
     <changefreq>weekly</changefreq>
   </url>
 
   <url>
-    <loc>https://henrysells.vercel.app/assets/pages/laptops.html</loc>
+    <loc>https://henrysells.vercel.app/pages/laptops.html</loc>
     <priority>0.64</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <url>
-    <loc>https://henrysells.vercel.app/assets/pages/phones.html</loc>
+    <loc>https://henrysells.vercel.app/pages/phones.html</loc>
     <priority>0.10</priority>
     <changefreq>never</changefreq>
   </url>

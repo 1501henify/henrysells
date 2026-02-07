@@ -17,10 +17,6 @@
   />
   <meta name="author" content="HenrySells" />
 
-  <!-- =========================
-      OPEN GRAPH (Facebook / Instagram / LinkedIn)
-      — Uses GitHub-hosted preview image
-========================= -->
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="HenrySells" />
@@ -37,7 +33,6 @@
 
   <meta property="og:url" content="https://henrysells.vercel.app" />
 
-  <!-- GitHub image for all non-WhatsApp platforms -->
   <meta
     property="og:image"
     content="https://raw.githubusercontent.com/1501henify/henrysells/refs/heads/main/og-image.png"
@@ -54,18 +49,12 @@
     content="HenrySells – Trusted Phone Seller in Nigeria"
   />
 
-  <!-- =========================
-      WHATSApp SPECIAL PREVIEW IMAGE
-========================= -->
   <meta
     property="og:image"
     content="https://henrysells.vercel.app/og-image.png"
     data-platform="whatsapp"
   />
 
-  <!-- =========================
-      TWITTER / X (uses GitHub image)
-========================= -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta
     name="twitter:title"
@@ -85,9 +74,6 @@
   <head>
     <!-- Basic page info -->
     <title>HenrySells — Curated, Genuine Tech Products</title>
-    <!-- =========================
-      PRIMARY META
-========================= -->
 
     <!-- Canonical -->
     <link rel="canonical" href="https://henrysells.vercel.app" />
@@ -95,9 +81,11 @@
     <!-- Theme Color -->
     <meta name="theme-color" content="#f68b1e" />
 
-    <!-- =========================
+    <!-- 
+    =========================
       ICONS
-========================= -->
+    ========================= 
+    -->
     <link rel="icon" href="/assets/img/favicon.ico" />
     <link
       rel="apple-touch-icon"
@@ -116,9 +104,7 @@
         "alternateName": "Henry Sells",
         "url": "https://henrysells.vercel.app",
         "logo": "https://henrysells.vercel.app/og-image.png",
-        "sameAs": [
-          "https://x.com/ifyOke0"
-        ],
+        "sameAs": ["https://x.com/ifyOke0"],
         "contactPoint": [
           {
             "@type": "ContactPoint",
@@ -130,9 +116,11 @@
       }
     </script>
 
-    <!-- =========================
+    <!-- 
+    =========================
       PERSON SCHEMA
-========================= -->
+    ========================= 
+    -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -142,9 +130,7 @@
         "url": "https://henrysells.vercel.app",
         "jobTitle": "Tech Product Seller",
         "image": "https://henrysells.vercel.app/og-image.png",
-        "sameAs": [
-          "https://x.com/ifyOke0"
-        ]
+        "sameAs": ["https://x.com/ifyOke0"]
       }
     </script>
 
@@ -208,10 +194,11 @@
 
         <div class="search-bar">
           <input
+            id="search-input"
             type="search"
-            placeholder="Search products, brands and categories"
+            placeholder="Search produts, brands and categories"
           />
-          <button class="search-btn">Search</button>
+          <button class="search-btn" id="search-btn">Search</button>
         </div>
 
         <div class="about-me more-info-btn" data-target="card1">
@@ -303,14 +290,17 @@
         <span id="nav-toggle">›</span>
         <span id="nav-links" class="hidden">
           <a href="/" data-name="Home">Home</a>
-          <a href="assets/pages/accessories.html" data-name="Accessories"
+          <a href="pages/accessories.html" data-name="Accessories"
             >Accessories</a
           >
-          <a href="assets/pages/laptops.html" data-name="Laptops">Laptops</a>
-          <a href="assets/pages/phones.html" data-name="Phones">Accessories</a>
+          <a href="pages/laptops.html" data-name="Laptops">Laptops</a>
+          <a href="pages/phones.html" data-name="Phones">Accessories</a>
         </span>
       </p>
     </div>
+
+    <section class="showcase" id="showcase"></section>
+
     <section class="deals" id="deals">
       <div class="product-card" data-product="1">
         <div class="product-container">
@@ -2445,18 +2435,12 @@
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="./assets/js/loader.js"></script>
-    <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/random.js"></script>
-    <script src="./assets/js/backToTop.js"></script>
-    <script type="module" src="./assets/js/search.js"></script>
-    <script src="./assets/js/nav.js"></script>
-    <script type="module" src="./assets/js/handle.js"></script>
-    <script src="./assets/js/specs.js"></script>
-    <script src="./assets/js/info.js"></script>
-    <script src="./assets/js/observer.js"></script>
-    <script type="module" src="./assets/js/review.js"></script>
-    <script src="./assets/js/sw-register.js"></script>
+    <!-- Main bundle for normal scripts -->
+    <script type="module" src="/assets/js/main.js"></script>
+
+    <!-- Keep real module files separate -->
+    <script type="module" src="/assets/js/search.js"></script>
+    <script type="module" src="/assets/js/handle.js"></script>
+    <script type="module" src="/assets/js/review.js"></script>
   </body>
 </html>
