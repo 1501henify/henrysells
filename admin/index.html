@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login</title>
 
     <link rel="stylesheet" href="./css/login.css" />
@@ -56,6 +56,7 @@
       </form>
     </div>
 
+    <!-- Firebase Config -->
     <script type="module">
       import { app, auth } from "../firebase/firebaseConfig.js";
       import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
@@ -65,24 +66,33 @@
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+
         errorBox.style.display = "none";
 
         const email = document.getElementById("admin-email").value.trim();
         const password = document.getElementById("admin-password").value.trim();
 
         try {
+          // 🔐 Firebase Login
           const userCredential = await signInWithEmailAndPassword(
             auth,
             email,
             password
           );
+
+          // Logged in successfully
           const user = userCredential.user;
 
           alert("Welcome Admin");
+
+          // Store admin session
           sessionStorage.setItem("adminAuth", "true");
+
+          // Redirect to dashboard
           window.location.href = "./html/dashboard.html";
         } catch (err) {
           console.error(err);
+
           errorBox.style.display = "block";
           errorBox.textContent = "Invalid email or password. Please try again.";
 
