@@ -1,14 +1,17 @@
 /* TEAM */
-Developer: Henry Sells
-Website: https://henrysells.vercel.app
-Email: henrysells17@gmail.com
+Developer: Henry (Anyi)
+Role: Student Developer, Frontend & Python Learner
+Location: Nigeria
+GitHub: https://github.com/1501henify
+GitHub: https://github.com/ifyOke0
 Phone: +2348160813334
 
 /* SITE */
-Last Updated: 2025
-Standards: HTML5, CSS3, JavaScript, GitHub, FireBase
-Hosting: Vercel
-Location: Nsukka, Nigeria
+Site Name: Henry Portfolio
+URL: https://henrysells.vercel.app
+Tech Stack: HTML, CSS, JavaScript, FireBase, Vercel
+Purpose: Sudent friendly gadgets selling website
+Type: E-commerce product catalog
 
 /* THANKS */
-Thanks for visiting HenrySells — your trusted source for genuine gadgets.
+Inspired by open-source developers, beginner-friendly tech educators, and the online markets.
