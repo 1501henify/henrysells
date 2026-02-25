@@ -7,7 +7,7 @@ GitHub: https://github.com/ifyOke0
 Phone: +2348160813334
 
 /* SITE */
-Site Name: Henry Portfolio
+Site Name: HenrySells
 URL: https://henrysells.vercel.app
 Tech Stack: HTML, CSS, JavaScript, FireBase, Vercel
 Purpose: Sudent friendly gadgets selling website
