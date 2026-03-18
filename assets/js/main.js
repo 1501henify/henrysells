@@ -6,5 +6,6 @@ import "./nav.js";
 import "./specs.js";
 import "./info.js";
 import "./showcase.js";
+import "./filter.js";
 import "./filter_two.js";
 import "./observer.js";
