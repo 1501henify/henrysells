@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!showcase) return;
 
   const video = document.createElement("video");
-  video.src = "./video";
+  video.src = "assets/video/adVid.mp4";
   video.muted = true;
   video.autoplay = true;
   video.loop = true;
